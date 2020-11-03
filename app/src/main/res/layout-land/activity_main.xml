@@ -7,25 +7,28 @@
     tools:context=".MainActivity">
 
     <fragment
-        android:id="@+id/keyboard"
+        android:id="@+id/keyboard1"
         android:name="com.example.labconverter.ui.KeyboardFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/data"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/data1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:layout="@layout/fragment_keyboard"/>
 
     <fragment
-        android:id="@+id/data"
+        android:id="@+id/data1"
         android:name="com.example.labconverter.ui.DataFragment"
         android:layout_width="0dp"
-        android:layout_height="300dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/keyboard1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_data"/>
+        tools:layout="@layout/fragment_data"
+/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
