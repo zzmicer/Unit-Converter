@@ -1,10 +1,14 @@
 package com.example.labconverter.ui
 
 import android.R
+import android.R.attr.label
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.Dispatchers
@@ -15,6 +19,7 @@ import org.json.JSONObject
 import java.net.URL
 import kotlin.math.pow
 
+
 class MainViewModel : ViewModel() {
     val liveInput = MutableLiveData<String>()
     val liveOutput = MutableLiveData<String>()
@@ -22,8 +27,8 @@ class MainViewModel : ViewModel() {
     val spinnerBaseId =  MutableLiveData<Int>()
     val spinnerConvertedId =  MutableLiveData<Int>()
 
-    var base = "Millimeter"
-    var converted = "Millimeter"
+    lateinit var base:String
+    lateinit var converted:String
 
     private var conversionRate = 0.0
 
@@ -36,7 +41,9 @@ class MainViewModel : ViewModel() {
     }
 
     fun onNumClick(num: String) {
+        if(liveInput.value!!.length!=10){
         liveInput.value += num
+            }
     }
 
     fun onDotClick() {
@@ -81,10 +88,16 @@ class MainViewModel : ViewModel() {
         return adapterCurrency
     }
 
+    fun swapValues(context: Context){
+        var temp = spinnerBaseId.value
+        spinnerBaseId.value = spinnerConvertedId.value
+        spinnerConvertedId.value = temp
+        convert(context)
+    }
 
     fun convert(context:Context) {
         if (liveInput.value?.isNotEmpty()!!) {
-            if (base == converted) {
+            if (spinnerBaseId.value == spinnerConvertedId.value) {
                 Toast.makeText(
                     context,
                     "Please pick a unit to convert",
@@ -105,6 +118,7 @@ class MainViewModel : ViewModel() {
             liveOutput.value = ""
         }
     }
+
 
     private fun getRate(): Double {
         val unitMap = mapOf(

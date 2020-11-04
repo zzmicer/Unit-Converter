@@ -94,9 +94,11 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
 
                 <Button
+                    android:enabled="false"
                     android:id="@+id/swap"
                     android:text="swap"
                     android:layout_width="wrap_content"
@@ -105,6 +107,7 @@
                     android:layout_marginRight="20dp" />
 
                 <Button
+                    android:enabled="false"
                     android:id="@+id/copy"
                     android:text="copy"
                     android:layout_width="wrap_content"

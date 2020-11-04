@@ -20,11 +20,20 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        config {
+            storeFile file("C:\\Users\\Lenovo\\keystores\\upload-keystore.jks")
+            storePassword "password"
+            keyAlias "upload"
+            keyPassword "password"
+        }
+    }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
     compileOptions {
@@ -34,6 +43,20 @@ android {
     // For Kotlin projects
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    flavorDimensions "version"
+    productFlavors {
+        demo {
+            dimension "version"
+            applicationIdSuffix ".demo"
+            versionNameSuffix "-demo"
+        }
+        full {
+            dimension "version"
+            applicationIdSuffix ".full"
+            versionNameSuffix "-full"
+        }
     }
 }
 

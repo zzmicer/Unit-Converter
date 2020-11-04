@@ -1,5 +1,8 @@
 package com.example.labconverter.ui
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,6 +11,8 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -18,20 +23,26 @@ class DataFragment : Fragment(R.layout.fragment_data) {
 
     //private val viewModel by viewModels<MainViewModel>() //передаём бремя создания на функцию
     private val viewModel: MainViewModel by activityViewModels()
-    lateinit var currUnit:String
+    lateinit var currUnit: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.liveInput.observe(
             viewLifecycleOwner,
-            Observer {et_firstConversion.setText(it)})
+            Observer { et_firstConversion.setText(it) })
         viewModel.liveOutput.observe(
             viewLifecycleOwner,
-            Observer {et_secondConversion.setText(it)})
+            Observer { et_secondConversion.setText(it) })
         viewModel.spinnerUnitId.observe(
             viewLifecycleOwner,
-            Observer {spinner_chooseUnit.setSelection(it)})
+            Observer { spinner_chooseUnit.setSelection(it) })
+        viewModel.spinnerBaseId.observe(
+            viewLifecycleOwner,
+            Observer { spinner_firstConversion.setSelection(it) })
+        viewModel.spinnerConvertedId.observe(
+            viewLifecycleOwner,
+            Observer { spinner_secondConversion.setSelection(it) })
 
 
         ArrayAdapter.createFromResource(
@@ -41,6 +52,18 @@ class DataFragment : Fragment(R.layout.fragment_data) {
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinner_chooseUnit.adapter = adapter
+        }
+
+        swap.setOnClickListener { viewModel.swapValues(requireContext()) }
+        copy.setOnClickListener {
+            var myClipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            var myClip: ClipData = ClipData.newPlainText("note_copy", viewModel.liveOutput.value)
+            myClipboard.setPrimaryClip(myClip)
+            Toast.makeText(
+                context,
+                "Output copied!",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
         /**!GOVNOCODE ALLERT!*/
@@ -90,7 +113,7 @@ class DataFragment : Fragment(R.layout.fragment_data) {
                         }
                         spinner_firstConversion.setSelection(viewModel.spinnerBaseId.value!!)
                         spinner_secondConversion.setSelection(viewModel.spinnerConvertedId.value!!)
-                        viewModel.base ="Gram"
+                        viewModel.base = "Gram"
                         viewModel.converted = "Kilogram"
                     }
                     "Distance" -> {
@@ -106,7 +129,7 @@ class DataFragment : Fragment(R.layout.fragment_data) {
                         }
                         spinner_firstConversion.setSelection(viewModel.spinnerBaseId.value!!)
                         spinner_secondConversion.setSelection(viewModel.spinnerConvertedId.value!!)
-                        viewModel.base ="Millimeter"
+                        viewModel.base = "Millimeter"
                         viewModel.converted = "Meter"
                     }
                 }
