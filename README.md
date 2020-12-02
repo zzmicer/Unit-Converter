@@ -1,5 +1,6 @@
 # UnitConverter
-A 'Unit/Currency Converter' application.
+### Shkadarevich Dmitry, 853506
+A 'Unit/Currency Converter' application. 
 
 1. Minumum 3 different unit categories (distance, weight, currency, etc)
 2. At least 3 different units in each category.
