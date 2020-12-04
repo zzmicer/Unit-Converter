@@ -1,4 +1,4 @@
-# Kotlin-Labs
-Android Labs BSUIR 2020
+# Unit-Converter
+Software Design 1 Lab
 
 ### Shkadarevich Dmitry, group 853506
