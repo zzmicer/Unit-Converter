@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">LabConverter</string>
+    <string-array name="Currency">
+        <item>EUR</item>
+
+        <item>RUB</item>
+        <item>USD</item>
+
+    </string-array>
+
+    <string-array name="Currency2">
+        <item>USD</item>
+
+        <item>EUR</item>
+        <item>RUB</item>
+
+    </string-array>
+
+    <string-array name="units">
+        <item>Distance</item>
+        <item>Weight</item>
+        <item>Currency</item>
+    </string-array>
+
+    <string-array name="Distance">
+        <item>Millimeter </item>
+        <item>Meter</item>
+        <item>Kilometer</item>
+    </string-array>
+
+    <string-array name="Weight">
+        <item>Gram</item>
+        <item>Kilogram</item>
+        <item>Ton</item>
+    </string-array>
+</resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="3"
+    android:rowCount="4"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <Button
+        style="@style/KeyboardButton"
+        android:id="@+id/n1"
+        android:text="1" />
+    <Button
+        style="@style/KeyboardButton"
+        android:id="@+id/n2"
+        android:text="2" />
+    <Button
+        style="@style/KeyboardButton"
+        android:id="@+id/n3"
+        android:text="3" />
+    <Button
+        style="@style/KeyboardButton"
+        android:id="@+id/n4"
+        android:text="4" />
+    <Button
+        style="@style/KeyboardButton"
+        android:id="@+id/n5"
+        android:text="5" />
+    <Button
+        style="@style/KeyboardButton"
+        android:id="@+id/n6"
+        android:text="6" />
+    <Button
+        style="@style/KeyboardButton"
+        android:id="@+id/n7"
+        android:text="7" />
+    <Button
+        style="@style/KeyboardButton"
+        android:id="@+id/n8"
+        android:text="8" />
+    <Button
+        style="@style/KeyboardButton"
+        android:id="@+id/n9"
+        android:text="9" />
+    <Button
+        style="@style/KeyboardButton"
+        android:id="@+id/n0"
+        android:text="0" />
+    <Button
+        style="@style/KeyboardButton"
+        android:id="@+id/point"
+        android:text="." />
+    <Button
+        style="@style/KeyboardButton"
+        android:id="@+id/clear"
+        android:text="del" />
+
+</GridLayout>
